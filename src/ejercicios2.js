@@ -11,7 +11,11 @@
 // ██████  COMPARACIÓN Y CONDICIONALES ████████████████████████
 
 // Test 1:
-function esMayorDeEdad(edad) {
+function esMayorDeEdad(edad) {if (edad >= 18) {
+    return true; // Es mayor de edad
+  } else {
+    return false; // Es menor de edad
+  }
 	// Recibe un número representando la edad de una persona.
 	// Devuelve true si la edad es mayor o igual a 18, false en caso contrario.
 	// Tu código:
@@ -19,6 +23,23 @@ function esMayorDeEdad(edad) {
 
 // Test 2:
 function clasificarTriangulo(lado1, lado2, lado3) {
+
+    if (lado1 + lado2 <= lado3 ||
+        lado1 + lado3 <= lado2 ||
+        lado2 + lado3 <= lado1) {
+        return "No es triángulo";
+    }
+
+    if (lado1 === lado2 && lado2 === lado3) {
+        return "Equilátero";
+    }
+
+    if (lado1 === lado2 || lado1 === lado3 || lado2 === lado3) {
+        return "Isósceles";
+    }
+
+    return "Escaleno";
+
 	// Recibe tres números representando los lados de un triángulo.
 	// Devuelve:
 	// - "Equilátero" si los tres lados son iguales
@@ -30,6 +51,16 @@ function clasificarTriangulo(lado1, lado2, lado3) {
 
 // Test 3:
 function calcularDescuento(precio, esMiembro, esFinDeSemana) {
+    if (esMiembro && esFinDeSemana) {
+        return precio * 0.70;
+    }
+
+    if (esMiembro || esFinDeSemana) {
+        return precio * 0.85;
+    }
+
+    return precio;
+
 	// Recibe: precio (número), esMiembro (boolean), esFinDeSemana (boolean)
 	// Reglas de descuento:
 	// - Si es miembro Y es fin de semana: 30% de descuento
@@ -40,7 +71,24 @@ function calcularDescuento(precio, esMiembro, esFinDeSemana) {
 }
 
 // Test 4:
-function obtenerDiaSemana(numero) {
+function obtenerDiaSemana(numero) { switch (numero) {
+        case 1:
+            return "Lunes";
+        case 2:
+            return "Martes";
+        case 3:
+            return "Miércoles";
+        case 4:
+            return "Jueves";
+        case 5:
+            return "Viernes";
+        case 6:
+            return "Sábado";
+        case 7:
+            return "Domingo";
+        default:
+            return "Día inválido";
+    }
 	// Recibe un número del 1 al 7.
 	// Devuelve el nombre del día correspondiente usando switch:
 	// 1 = "Lunes", 2 = "Martes", ..., 7 = "Domingo"
@@ -49,7 +97,11 @@ function obtenerDiaSemana(numero) {
 }
 
 // Test 5:
-function esAnioBisiesto(anio) {
+function esAnioBisiesto(anio) {if ((anio % 4 === 0 && anio % 100 !== 0) || (anio % 400 === 0)) {
+        return true;
+    }
+
+    return false;
 	// Recibe un número representando un año.
 	// Devuelve true si es bisiesto, false si no lo es.
 	// Regla: Es bisiesto si es divisible por 4,
@@ -62,6 +114,15 @@ function esAnioBisiesto(anio) {
 
 // Test 6:
 function validarContraseña(password) {
+
+    let tieneMayuscula = /[A-Z]/.test(password);
+    let tieneNumero = /[0-9]/.test(password);
+
+    if (password.length >= 8 && tieneMayuscula && tieneNumero) {
+        return true;
+    }
+
+    return false;
 	// Recibe un string con una contraseña.
 	// Devuelve true si cumple TODAS estas condiciones:
 	// - Tiene al menos 8 caracteres
@@ -74,6 +135,17 @@ function validarContraseña(password) {
 
 // Test 7:
 function calcularIMC(peso, altura) {
+	let imc = peso / (altura * altura);
+
+    if (imc < 18.5) {
+        return "Bajo peso";
+    } else if (imc < 25) {
+        return "Peso normal";
+    } else if (imc < 30) {
+        return "Sobrepeso";
+    } else {
+        return "Obesidad";
+    }
 	// Recibe: peso (kg, número), altura (metros, número)
 	// Calcula el IMC: peso / (altura * altura)
 	// Devuelve un string con la clasificación:
